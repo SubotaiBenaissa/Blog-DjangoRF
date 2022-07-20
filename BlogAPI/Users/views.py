@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from .models import User
+# from .models import User
 from .serializers import UserSerializer, UserRegisterSerializer
 
 # Create your views here.
@@ -26,5 +26,7 @@ class UserView(APIView):
     
     def get(self, request):
         
-        #serializer = 
-        pass
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+        
+        
