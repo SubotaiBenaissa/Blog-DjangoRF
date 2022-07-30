@@ -2,9 +2,12 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from Post.models import Post
 from .serializers import PostSerializer
+from .permissions import IsAdminOrReadOnly
 # Create your views here.
 
 class PostApiViewSet(ModelViewSet):
     
+    permission_classes = [IsAdminOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(published=True)
+    lookup_field = 'slug'

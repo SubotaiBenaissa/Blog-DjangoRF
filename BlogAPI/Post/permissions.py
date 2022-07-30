@@ -7,7 +7,7 @@ class IsAdminOrReadOnly(BasePermission):
         if request.method == 'GET':
             
             return True
-        
+
         else: 
             
             return request.user.is_staff
